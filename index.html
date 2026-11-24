@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tasmiya Parveen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F6F7F9;
+  --ink: #12171F;
+  --muted: #5B6572;
+  --line: #D8DCE2;
+  --wash: #ECEFF3;
+  --accent: #2B3FD1;
+  --alert: #C2304F;
+  --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --sans: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  box-sizing: border-box;
+  background: var(--bg);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E141B; --ink: #E9ECF1; --muted: #98A3B1; --line: #26303C; --wash: #151D26;
+    --accent: #8C9BFF; --alert: #FF7A93; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E141B; --ink: #E9ECF1; --muted: #98A3B1; --line: #26303C; --wash: #151D26;
+  --accent: #8C9BFF; --alert: #FF7A93; color-scheme: dark;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 1.07rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 20; }
+a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1px; text-decoration-color: var(--muted); }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 3px; }
+.wrap { width: min(1100px, 100% - 3rem); margin-inline: auto; }
+
+/* header */
+header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; padding-block: 1.75rem; }
+header .mark { font-family: var(--serif); font-size: 1.4rem; text-decoration: none; letter-spacing: -0.01em; }
+header nav { display: flex; gap: 1.75rem; font-size: 0.98rem; }
+header nav a { text-decoration: none; color: var(--muted); }
+header nav a:hover { color: var(--ink); }
+
+/* hero */
+.hero { padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2.5rem, 6vw, 4rem); }
+.hero h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(3rem, 9vw, 6.5rem); line-height: 0.98; letter-spacing: -0.025em; }
+.hero .intro { margin: 1.5rem 0 0; max-width: 54ch; font-size: 1.2rem; line-height: 1.6; }
+
+/* sections */
+section { padding-block: clamp(3rem, 8vw, 6rem); border-top: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr); gap: 1.5rem 4rem; }
+h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1.05; letter-spacing: -0.015em; }
+.prose p { margin: 0 0 1.1rem; max-width: 60ch; }
+.prose p.big { font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.25; max-width: 32ch; }
+
+/* projects */
+.project { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr); gap: 1.25rem 4rem; padding-block: 2.75rem; border-top: 1px solid var(--line); }
+.project:first-of-type { border-top: 0; padding-top: 0.5rem; }
+.project h3 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1.05; letter-spacing: -0.015em; }
+.project .kind { margin: 0.4rem 0 0; color: var(--muted); }
+.project .stack { margin: 1rem 0 0; color: var(--muted); font-size: 0.96rem; max-width: 30ch; }
+.project .body p { margin: 0 0 1rem; max-width: 60ch; }
+.fig { margin-top: 1.5rem; border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem; background: var(--wash); }
+.fig svg, .fig canvas { display: block; width: 100%; height: auto; }
+.fig .cap { margin: 0.8rem 0 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+.fig .row { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; margin-top: 0.8rem; font-size: 0.95rem; font-weight: 500; }
+.fig input[type=range] { flex: 1 1 160px; min-width: 120px; accent-color: var(--accent); height: 2rem; }
+.fig output { font-weight: 600; }
+button.pill { font: 500 0.92rem var(--sans); color: var(--ink); background: transparent; border: 1px solid var(--ink); border-radius: 999px; padding: 0.35rem 0.95rem; cursor: pointer; }
+button.pill:hover { background: var(--ink); color: var(--bg); }
+.plot-scroll { overflow-x: auto; }
+#plot { min-width: 520px; cursor: ew-resize; touch-action: pan-y; }
+#plot text { font-family: var(--sans); font-size: 15px; fill: var(--muted); }
+#plot .ln { fill: var(--accent); font-weight: 600; }
+#plot .la { fill: var(--alert); font-weight: 600; }
+.presets { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.readout { margin: 1rem 0 0; font-family: var(--serif); font-size: clamp(1.35rem, 2.4vw, 1.75rem); line-height: 1.25; }
+.readout .a { color: var(--alert); }
+.readout .n { color: var(--accent); }
+.more { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem 3rem; padding-top: 2.75rem; border-top: 1px solid var(--line); }
+.more h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-weight: 400; font-size: 1.55rem; line-height: 1.1; }
+.more p { margin: 0; color: var(--muted); }
+
+/* background */
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline li { display: grid; grid-template-columns: minmax(0, 1fr); padding-block: 1.2rem; border-top: 1px solid var(--line); }
+.timeline li:first-child { border-top: 0; padding-top: 0; }
+.timeline b { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; line-height: 1.15; }
+.timeline span { color: var(--muted); max-width: 58ch; }
+
+dl.tools { margin: 0; }
+dl.tools div { display: grid; grid-template-columns: minmax(130px, 0.4fr) 1fr; gap: 0.5rem 2rem; padding-block: 0.95rem; border-top: 1px solid var(--line); }
+dl.tools div:first-child { border-top: 0; padding-top: 0; }
+dl.tools dt { font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; }
+dl.tools dd { margin: 0; color: var(--muted); }
+
+/* contact */
+.contact .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 1rem; }
+footer { padding-block: 2rem 3rem; color: var(--muted); font-size: 0.93rem; border-top: 1px solid var(--line); }
+
+@media (max-width: 780px) {
+  .grid, .project { grid-template-columns: 1fr; gap: 1rem; }
+  dl.tools div { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.pulsing { animation: pulse 1.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .pulsing { animation: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="mark" href="#top">Tasmiya Parveen</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+</div>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <h1>Tasmiya Parveen</h1>
+      <p class="intro">I’m a data and machine learning engineer based in Boston. I’m currently studying Information Systems at Northeastern University.</p>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap grid">
+      <h2>About</h2>
+      <div class="prose">
+        <p>I’m a Master’s student in Information Systems at Northeastern University in Boston, graduating in December 2027. Before that, I earned a bachelor’s degree in computer science in India.</p>
+        <p>My work is in data engineering and applied machine learning. I’ve built data pipelines, a statistical model for detecting network intrusions, a hard-drive reliability analytics project, and several team projects, which are described below.</p>
+        <p>I’m interested in applied machine learning, cybersecurity, human-AI collaboration, and data engineering.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="grid" style="margin-bottom:2rem"><h2>Selected work</h2></div>
+
+      <article class="project">
+        <div>
+          <h3>Intrusion detection</h3>
+          <p class="kind">Statistical modelling in R, solo project</p>
+          <p class="stack">R, logistic regression, VIF diagnostics, ROC analysis</p>
+        </div>
+        <div class="body">
+          <p>I analysed more than 123,000 network records to tell attack traffic from normal traffic across TCP, UDP, and ICMP. I fixed severe multicollinearity and class imbalance, then tuned the decision threshold so the model misses as few attacks as possible.</p>
+          <p>The model reached an AUC of 0.9937 and an F1 near 98%. Moving the threshold from 0.5 to 0.3 raised attack detection to 98.34%. Drag the line to see what that choice trades away.</p>
+          <div class="fig">
+            <div class="plot-scroll">
+              <svg id="plot" viewBox="0 0 800 280" role="img" aria-label="Two overlapping score distributions, normal traffic on the left and attack traffic on the right, with a movable threshold line."></svg>
+            </div>
+            <div class="row">
+              <label for="thr">Threshold</label>
+              <input id="thr" type="range" min="0.05" max="0.95" step="0.01" value="0.3">
+              <span class="presets">
+                <button type="button" class="pill" data-v="0.5">0.5, the default</button>
+                <button type="button" class="pill" data-v="0.3">0.3, what I used</button>
+              </span>
+            </div>
+            <p class="readout" id="readout" aria-live="polite"></p>
+            <p class="cap">The curves are synthetic scores that illustrate the trade-off. On the real data, attack detection was 98.34% at a threshold of 0.3.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>DemandFlow</h3>
+          <p class="kind">End-to-end data platform</p>
+          <p class="stack">PostgreSQL, ClickHouse, Airflow, FastAPI, React and TypeScript, LLM/RAG, Docker, Kubernetes</p>
+        </div>
+        <div class="body">
+          <p>A pipeline that extracts demand data, validates it, and only then loads it, so bad rows are stopped before anyone builds on them. Around the pipeline sit a FastAPI service, a React dashboard, and an LLM/RAG layer for asking questions about the data.</p>
+          <div class="fig">
+            <svg id="flow" viewBox="0 0 320 130" role="img" aria-label="Rows moving through extract, validate, and load stages">
+              <line x1="20" y1="60" x2="300" y2="60" stroke="var(--line)" stroke-width="2"/>
+              <rect x="24" y="36" width="70" height="48" rx="8" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <rect x="125" y="36" width="70" height="48" rx="8" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <rect x="226" y="36" width="70" height="48" rx="8" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+              <text x="59" y="65" text-anchor="middle" style="font:500 13px var(--sans);fill:var(--ink)">Extract</text>
+              <text x="160" y="65" text-anchor="middle" style="font:500 13px var(--sans);fill:var(--ink)">Validate</text>
+              <text x="261" y="65" text-anchor="middle" style="font:500 13px var(--sans);fill:var(--ink)">Load</text>
+              <g id="dots"></g>
+              <text id="flowmsg" x="160" y="115" text-anchor="middle" style="font:13px var(--sans);fill:var(--muted)">Rows pass when they check out.</text>
+            </svg>
+            <div class="row"><button type="button" class="pill" id="bad">Send a bad row</button></div>
+            <p class="cap">An illustration of the validate-before-load idea.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div>
+          <h3>DriveSentinel</h3>
+          <p class="kind">Hard-drive reliability analytics</p>
+          <p class="stack">Python, DuckDB, BigQuery, dbt, GitHub Actions, Node.js, React, Power BI</p>
+        </div>
+        <div class="body">
+          <p>Analytics for how fleets of hard drives fail over time. Data is modelled in dbt on DuckDB and BigQuery, tested and deployed through GitHub Actions, and shown in a React front end and Power BI.</p>
+          <div class="fig">
+            <svg id="fleet" viewBox="0 0 320 150" role="img" aria-label="A grid of 60 drives where more turn red as the days in service increase"></svg>
+            <div class="row">
+              <label for="age">Days in service</label>
+              <input id="age" type="range" min="0" max="1000" step="10" value="300">
+              <output id="ageout" for="age"></output>
+            </div>
+            <p class="cap" id="fleetcap"></p>
+          </div>
+        </div>
+      </article>
+
+      <div class="more">
+        <div>
+          <h3>NEXUS job matching platform</h3>
+          <p>Team project. I built the front end: landing, login, and signup pages in Bootstrap 5.</p>
+        </div>
+        <div>
+          <h3>Community Blood Donation Management System</h3>
+          <p>Team of three. A Java Swing desktop app with 13 role-specific dashboards, Singleton, Factory, and Observer patterns, SQLite over JDBC, and a custom Java2D chart.</p>
+        </div>
+        <div>
+          <h3>Cloud Kitchen Management System</h3>
+          <p>Team database project on SQL Server with a 16-table schema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="background">
+    <div class="wrap grid">
+      <h2>Background</h2>
+      <ul class="timeline">
+        <li><b>Instructional Assistant, Northeastern University</b><span>Fall 2026. Supported NUFlex classrooms with Teams, Canvas, Panopto, and AV equipment for faculty and students.</span></li>
+        <li><b>Machine Learning Intern, Technologics</b><span>Bengaluru, India</span></li>
+        <li><b>M.S. Information Systems, Northeastern University</b><span>Boston, graduating December 2027</span></li>
+        <li><b>B.Eng. Computer Science, SJM Institute of Technology</b><span>India</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="wrap grid">
+      <h2>Tools</h2>
+      <dl class="tools">
+        <div><dt>Languages</dt><dd>Python, SQL, R, Java, JavaScript and TypeScript</dd></div>
+        <div><dt>Data</dt><dd>PostgreSQL, ClickHouse, DuckDB, BigQuery, SQL Server, dbt, Airflow</dd></div>
+        <div><dt>Analysis and ML</dt><dd>Statistical modelling, classification, model evaluation, LLM and RAG pipelines</dd></div>
+        <div><dt>Building and shipping</dt><dd>FastAPI, React, Docker, Kubernetes, GitHub Actions, Power BI</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap grid">
+      <h2>Contact</h2>
+      <div class="prose">
+      <p>You can reach me by email, or find me on LinkedIn and GitHub.</p>
+      <div class="links">
+        <a href="mailto:parveen.t@northeastern.edu">Email</a>
+        <a href="https://www.linkedin.com/in/tasmiya-parveen-27617429b/">LinkedIn</a>
+        <a href="https://github.com/Tasmiya-09">GitHub</a>
+      </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Tasmiya Parveen, Boston</div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NS = "http://www.w3.org/2000/svg";
+  function css(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function rng(seed) { return function () { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }; }
+
+  /* threshold figure */
+  function erf(x) {
+    var s = x < 0 ? -1 : 1; x = Math.abs(x);
+    var t = 1 / (1 + 0.3275911 * x);
+    var y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return s * y;
+  }
+  function cdf(x, m, s) { return 0.5 * (1 + erf((x - m) / (s * Math.SQRT2))); }
+  function pdf(x, m, s) { return Math.exp(-0.5 * Math.pow((x - m) / s, 2)) / (s * Math.sqrt(2 * Math.PI)); }
+  var N = { m: 0.2, s: 0.09 }, A = { m: 0.69, s: 0.183 };
+  var X0 = 40, X1 = 760, Y0 = 240, HH = 190;
+  var peak = Math.max(pdf(N.m, N.m, N.s), pdf(A.m, A.m, A.s));
+  function px(v) { return X0 + v * (X1 - X0); }
+  function curve(d) { var pts = []; for (var i = 0; i <= 120; i++) { var v = i / 120; pts.push([px(v), Y0 - (pdf(v, d.m, d.s) / peak) * HH]); } return pts; }
+  function path(pts, close) {
+    var p = "M" + pts.map(function (q) { return q[0].toFixed(1) + " " + q[1].toFixed(1); }).join(" L");
+    return close ? p + " L" + pts[pts.length - 1][0] + " " + Y0 + " L" + pts[0][0] + " " + Y0 + " Z" : p;
+  }
+  var plot = document.getElementById("plot"), nPts = curve(N), aPts = curve(A);
+  plot.innerHTML =
+    '<defs><clipPath id="clipR"><rect id="clipRect" x="0" y="0" width="800" height="280"/></clipPath></defs>' +
+    '<line x1="' + X0 + '" y1="' + Y0 + '" x2="' + X1 + '" y2="' + Y0 + '" stroke="var(--line)" stroke-width="1.5"/>' +
+    '<path d="' + path(nPts, true) + '" fill="var(--accent)" fill-opacity="0.14"/>' +
+    '<path d="' + path(aPts, true) + '" fill="var(--alert)" fill-opacity="0.14"/>' +
+    '<g clip-path="url(#clipR)"><path d="' + path(nPts, true) + '" fill="var(--accent)" fill-opacity="0.5"/><path d="' + path(aPts, true) + '" fill="var(--alert)" fill-opacity="0.5"/></g>' +
+    '<path d="' + path(nPts) + '" fill="none" stroke="var(--accent)" stroke-width="2.5"/>' +
+    '<path d="' + path(aPts) + '" fill="none" stroke="var(--alert)" stroke-width="2.5"/>' +
+    '<text class="ln" x="' + px(0.2) + '" y="' + (Y0 - HH - 12) + '" text-anchor="middle">normal traffic</text>' +
+    '<text class="la" x="' + px(0.78) + '" y="' + (Y0 - 95) + '" text-anchor="middle">attack traffic</text>' +
+    '<line id="tline" y1="28" y2="' + Y0 + '" stroke="var(--ink)" stroke-width="2"/>' +
+    '<circle id="thandle" cy="28" r="8" fill="var(--ink)"/>' +
+    '<text id="tval" y="14" text-anchor="middle" style="fill:var(--ink);font-weight:600"></text>' +
+    '<text x="' + X0 + '" y="268">low score</text><text x="' + X1 + '" y="268" text-anchor="end">high score: flagged as attack</text>';
+  var thr = document.getElementById("thr"), readout = document.getElementById("readout");
+  function updateThr() {
+    var t = parseFloat(thr.value), x = px(t);
+    document.getElementById("clipRect").setAttribute("x", x);
+    var l = document.getElementById("tline"); l.setAttribute("x1", x); l.setAttribute("x2", x);
+    document.getElementById("thandle").setAttribute("cx", x);
+    var v = document.getElementById("tval"); v.setAttribute("x", x); v.textContent = t.toFixed(2);
+    var caught = (1 - cdf(t, A.m, A.s)) * 100, fl = (1 - cdf(t, N.m, N.s)) * 100;
+    readout.innerHTML = 'At ' + t.toFixed(2) + ', the model flags <span class="a">' + caught.toFixed(1) + '% of attacks</span> and <span class="n">' + fl.toFixed(1) + '% of normal traffic</span>.';
+  }
+  thr.addEventListener("input", updateThr);
+  document.querySelectorAll(".presets button").forEach(function (b) {
+    b.addEventListener("click", function () { thr.value = b.getAttribute("data-v"); updateThr(); });
+  });
+  var dragging = false;
+  function dragTo(e) {
+    var r = plot.getBoundingClientRect(), v = ((e.clientX - r.left) / r.width * 800 - X0) / (X1 - X0);
+    thr.value = Math.min(0.95, Math.max(0.05, v)).toFixed(2); updateThr();
+  }
+  plot.addEventListener("pointerdown", function (e) { dragging = true; plot.setPointerCapture(e.pointerId); dragTo(e); });
+  plot.addEventListener("pointermove", function (e) { if (dragging) dragTo(e); });
+  plot.addEventListener("pointerup", function () { dragging = false; });
+  updateThr();
+
+  /* pipeline */
+  var dots = document.getElementById("dots"), flowmsg = document.getElementById("flowmsg"), live = [], last = 0, since = 0;
+  var REJ = "Rejected at validation. It never reaches the table.", OK = "Rows pass when they check out.";
+  function spawn(bad) {
+    var c = document.createElementNS(NS, "circle");
+    c.setAttribute("r", 6); c.setAttribute("cy", 60); c.setAttribute("fill", bad ? "var(--alert)" : "var(--accent)");
+    dots.appendChild(c); live.push({ el: c, x: 14, bad: bad, state: "go", t: 0 });
+  }
+  function tick(ts) {
+    var dt = Math.min(50, ts - last); last = ts; since += dt;
+    if (since > 900) { since = 0; if (live.length < 6) spawn(false); }
+    live = live.filter(function (d) {
+      if (d.state === "go") {
+        d.x += dt * 0.06;
+        if (d.bad && d.x >= 120) { d.state = "stop"; flowmsg.textContent = REJ; }
+      } else {
+        d.t += dt; d.el.setAttribute("opacity", Math.max(0, 1 - d.t / 1400));
+        if (d.t > 1400) { d.el.remove(); setTimeout(function () { flowmsg.textContent = OK; }, 1200); return false; }
+      }
+      d.el.setAttribute("cx", d.x);
+      if (d.x > 310) { d.el.remove(); return false; }
+      return true;
+    });
+    requestAnimationFrame(tick);
+  }
+  if (reduce) { document.getElementById("bad").addEventListener("click", function () { flowmsg.textContent = REJ; }); }
+  else { requestAnimationFrame(tick); document.getElementById("bad").addEventListener("click", function () { spawn(true); }); }
+
+  /* fleet */
+  var fleet = document.getElementById("fleet"), age = document.getElementById("age"), r1 = rng(7), cells = [];
+  for (var i = 0; i < 60; i++) {
+    var c = document.createElementNS(NS, "rect");
+    c.setAttribute("x", 12 + (i % 15) * 20); c.setAttribute("y", 12 + Math.floor(i / 15) * 34);
+    c.setAttribute("width", 15); c.setAttribute("height", 26); c.setAttribute("rx", 3);
+    fleet.appendChild(c); cells.push({ el: c, life: 150 + Math.pow(r1(), 0.6) * 1100 });
+  }
+  function updateFleet() {
+    var d = +age.value, n = 0;
+    cells.forEach(function (o) { var f = o.life <= d; if (f) n++; o.el.setAttribute("fill", f ? "var(--alert)" : "var(--accent)"); o.el.setAttribute("fill-opacity", f ? 1 : 0.5); });
+    document.getElementById("ageout").textContent = d;
+    document.getElementById("fleetcap").textContent = n + " of 60 drives failed by day " + d + ". A synthetic fleet, drawn to show the idea.";
+  }
+  age.addEventListener("input", updateFleet); updateFleet();
+
+})();
+</script>
+</body>
+</html>
